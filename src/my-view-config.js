@@ -9,7 +9,7 @@ export const myViewConfig = {
         {
           "type": "cells",
           "fileType": "anndata-cells.zarr",
-          "url": "V1_Human_Lymph_Node.zarr",
+          "url": "https://chenwenchang.github.io/vitessce-demo-gh-pages/V1_Human_Lymph_Node.zarr",
           "options": {
             "mappings": {
               "UMAP": {
