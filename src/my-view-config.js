@@ -1,70 +1,57 @@
-export const myViewConfig = {
-  version: "1.0.4",
-  name: "My example config",
-  description: "This demonstrates the JSON schema",
+export const myViewConfig = const config = {
+  version: "1.0.0",
+  name: "10x visium human lymph node",
+  initStrategy: "auto",
   datasets: [
     {
-      uid: "D1",
-      name: "Dries",
+      uid: "my-visium-dataset",
       files: [
         {
-          url: "https://chenwenchang.github.io/vitessce-demo-gh-pages/dries.cells.json",
           type: "cells",
-          fileType: "cells.json"
-        },
-        {
-          url: "https://chenwenchang.github.io/vitessce-demo-gh-pages/dries.cell-sets.json",
-          type: "cell-sets",
-          fileType: "cell-sets.json"
+          fileType: "anndata-cells.zarr",
+          url: "https://chenwenchang.github.io/vitessce-demo-gh-pages/V1_Human_Lymph_Node.zarr",
+          options: {
+            mappings: {
+              UMAP: {
+                key: "obsm/X_umap",
+                dims: [0, 1]
+              },
+              PCA: {
+                key: "obsm/X_pca",
+                dims: [0, 1]
+              }
+            }
+          }
         }
       ]
     }
   ],
   coordinationSpace: {
-    dataset: {
-      A: "D1"
-    },
     embeddingType: {
-      A: "UMAP",
-      B: "t-SNE"
-    },
-    embeddingZoom: {
-      A: 2.5
+      ET1: "PCA",
+      ET2: "UMAP"
     }
   },
   layout: [
     {
       component: "scatterplot",
       coordinationScopes: {
-        dataset: "A",
-        embeddingType: "A",
-        embeddingZoom: "A"
+        embeddingType: "ET1"
       },
-      x: 6, y: 0, w: 6, h: 6
+      x: 0,
+      y: 0,
+      w: 6,
+      h: 12
     },
     {
       component: "scatterplot",
       coordinationScopes: {
-        dataset: "A",
-        embeddingType: "B",
-        embeddingZoom: "A"
+        embeddingType: "ET2"
       },
-      x: 0, y: 0, w: 6, h: 6
-    },
-    {
-      component: "cellSets",
-      coordinationScopes: {
-        dataset: "A"
-      },
-      x: 0, y: 6, w: 6, h: 6
-    },
-    {
-      component: "cellSetSizes",
-      coordinationScopes: {
-        dataset: "A"
-      },
-      x: 6, y: 6, w: 6, h: 6
+      x: 6,
+      y: 0,
+      w: 6,
+      h: 12
     }
-  ],
-  initStrategy: "auto"
+  ]
 };
