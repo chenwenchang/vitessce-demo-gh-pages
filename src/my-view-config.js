@@ -8,12 +8,12 @@ export const myViewConfig = {
       name: "Dries",
       files: [
         {
-          url: "https://data-1.vitessce.io/0.0.31/master_release/dries/dries.cells.json",
+          url: "https://chenwenchang.github.io/vitessce-demo-gh-pages/dries.cells.json",
           type: "cells",
           fileType: "cells.json"
         },
         {
-          url: "https://data-1.vitessce.io/0.0.31/master_release/dries/dries.cell-sets.json",
+          url: "https://chenwenchang.github.io/vitessce-demo-gh-pages/dries.cell-sets.json",
           type: "cell-sets",
           fileType: "cell-sets.json"
         }
