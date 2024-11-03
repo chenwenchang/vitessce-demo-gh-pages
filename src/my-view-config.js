@@ -1,63 +1,70 @@
 export const myViewConfig = {
-  "version": "1.0.0",
-  "name": "10x visium human lymph node",
-  "initStrategy": "auto",
-  "datasets": [
+  version: "1.0.4",
+  name: "My example config",
+  description: "This demonstrates the JSON schema",
+  datasets: [
     {
-      "uid": "my-visium-dataset",
-      "files": [
+      uid: "D1",
+      name: "Dries",
+      files: [
         {
-          "type": "cells",
-          "fileType": "anndata-cells.zarr",
-          "url": "https://chenwenchang.github.io/vitessce-demo-gh-pages/V1_Human_Lymph_Node.zarr",
-          "options": {
-            "mappings": {
-              "UMAP": {
-                "key": "obsm/X_umap",
-                "dims": [
-                  0,
-                  1
-                ]
-              },
-              "PCA": {
-                "key": "obsm/X_pca",
-                "dims": [
-                  0,
-                  1
-                ]
-              }
-            }
-          }
+          url: "https://data-1.vitessce.io/0.0.31/master_release/dries/dries.cells.json",
+          type: "cells",
+          fileType: "cells.json"
+        },
+        {
+          url: "https://data-1.vitessce.io/0.0.31/master_release/dries/dries.cell-sets.json",
+          type: "cell-sets",
+          fileType: "cell-sets.json"
         }
       ]
     }
   ],
-  "coordinationSpace": {
-    "embeddingType": {
-      "ET1": "PCA",
-      "ET2": "UMAP"
+  coordinationSpace: {
+    dataset: {
+      A: "D1"
+    },
+    embeddingType: {
+      A: "UMAP",
+      B: "t-SNE"
+    },
+    embeddingZoom: {
+      A: 2.5
     }
   },
-  "layout": [
+  layout: [
     {
-      "component": "scatterplot",
-      "coordinationScopes": {
-        "embeddingType": "ET1"
+      component: "scatterplot",
+      coordinationScopes: {
+        dataset: "A",
+        embeddingType: "A",
+        embeddingZoom: "A"
       },
-      "x": 0,
-      "y": 0,
-      "w": 6,
-      "h": 12
+      x: 6, y: 0, w: 6, h: 6
     },
     {
-      "component": "scatterplot",
-      "coordinationScopes": {
-        "embeddingType": "ET2"
+      component: "scatterplot",
+      coordinationScopes: {
+        dataset: "A",
+        embeddingType: "B",
+        embeddingZoom: "A"
       },
-      "x": 6,
-      "y": 0,
-      "w": 6,
-      "h": 12
+      x: 0, y: 0, w: 6, h: 6
+    },
+    {
+      component: "cellSets",
+      coordinationScopes: {
+        dataset: "A"
+      },
+      x: 0, y: 6, w: 6, h: 6
+    },
+    {
+      component: "cellSetSizes",
+      coordinationScopes: {
+        dataset: "A"
+      },
+      x: 6, y: 6, w: 6, h: 6
     }
-  ]
+  ],
+  initStrategy: "auto"
 };
