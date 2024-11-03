@@ -13,7 +13,7 @@ export const myViewConfig = {
           fileType: "cells.json"
         },
         {
-          url: "https://chenwenchang.github.io/vitessce-demo-gh-pages/dries.cell-sets.json",
+          url: "https://chenwenchang.github.io/vitessce-demo-gh-pages/dries.cellsets.json",
           type: "cell-sets",
           fileType: "cell-sets.json"
         }
