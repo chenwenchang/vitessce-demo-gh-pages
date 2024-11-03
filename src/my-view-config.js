@@ -1,4 +1,4 @@
-export const myViewConfig = const config = {
+export const myViewConfig = {
   version: "1.0.0",
   name: "10x visium human lymph node",
   initStrategy: "auto",
