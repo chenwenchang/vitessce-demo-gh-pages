@@ -19,7 +19,13 @@ export const myViewConfig = {
               PCA: {
                 key: "obsm/X_pca",
                 dims: [0, 1]
-              }
+              },
+              obsSets: [
+                  {
+                      name: "Clusters",
+                      path: "obs/clusters"
+                  }
+              ]
             }
           }
         }
@@ -30,13 +36,18 @@ export const myViewConfig = {
     embeddingType: {
       ET1: "PCA",
       ET2: "UMAP"
-    }
+    },
+    coordinationSpace: {
+      dataset: {
+        A: "my-visium-dataset"
+      }
+    },
   },
   layout: [
     {
-      component: "scatterplot",
+      component: "obsSets",
       coordinationScopes: {
-        embeddingType: "ET1"
+        datasets: "A"
       },
       x: 0,
       y: 0,
@@ -48,7 +59,17 @@ export const myViewConfig = {
       coordinationScopes: {
         embeddingType: "ET2"
       },
-      x: 6,
+      x: 4,
+      y: 0,
+      w: 6,
+      h: 12
+    },
+    {
+      component: "scatterplot",
+      coordinationScopes: {
+        embeddingType: "ET2"
+      },
+      x: 10,
       y: 0,
       w: 6,
       h: 12
