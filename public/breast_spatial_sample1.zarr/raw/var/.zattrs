@@ -1,0 +1,12 @@
+{
+    "_index": "_index",
+    "column-order": [
+        "feature_name",
+        "feature_reference",
+        "feature_biotype",
+        "feature_length",
+        "feature_type"
+    ],
+    "encoding-type": "dataframe",
+    "encoding-version": "0.2.0"
+}

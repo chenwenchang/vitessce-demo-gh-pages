@@ -1,78 +1,158 @@
 export const myViewConfig = {
-  version: "1.0.0",
-  name: "10x visium human lymph node",
-  initStrategy: "auto",
+  version: "1.0.15",
+  name: "Wenchang test",
+  description: "Spatial Visualization Demo",
   datasets: [
-    {
-      uid: "my-visium-dataset",
-      files: [
-        {
-          type: "cells",
-          fileType: "anndata-cells.zarr",
-          url: "https://chenwenchang.github.io/vitessce-demo-gh-pages/V1_Human_Lymph_Node.zarr",
-          options: {
-            mappings: {
-              UMAP: {
-                key: "obsm/X_umap",
-                dims: [0, 1]
-              },
-              PCA: {
-                key: "obsm/X_pca",
-                dims: [0, 1]
-              },
-              obsSets: [
-                  {
-                      name: "Clusters",
-                      path: "obs/clusters"
+      {
+          uid: "test1",
+          name: "test1",
+          files: [
+              {
+                  fileType: "anndata.zarr",
+                  url: "https://chenwenchang.github.io/vitessce-demo-gh-pages/breast_spatial_sample1.zarr",
+                  coordinationValues: {
+                      obsType: "bead",
+                      featureType: "gene",
+                      featureValueType: "expression",
+                      embeddingType: "UMAP"
+                  },
+                  options: {
+                      obsFeatureMatrix: {
+                          path: "obsm/X_hvg",
+                          featureFilterPath: "var/highly_variable"
+                      },
+                      obsEmbedding: {
+                          path: "obsm/X_umap"
+                      },
+                      obsLocations: {
+                          path: "obsm/X_spatial"
+                      },
+                      obsSets: [
+                          {
+                              name: "Bead Type",
+                              path: "obs/cell_type"
+                          }
+                      ],
+                      featureLabels: {
+                          path: "var/feature_name"
+                      }
                   }
-              ]
-            }
-          }
-        }
-      ]
-    }
-  ],
-  coordinationSpace: {
-    embeddingType: {
-      ET1: "PCA",
-      ET2: "UMAP"
-    },
-    coordinationSpace: {
-      dataset: {
-        A: "my-visium-dataset"
+              }
+          ]
       }
-    },
+  ],
+  initStrategy: "auto",
+  coordinationSpace: {
+      embeddingType: {
+          UMAP: "UMAP"
+      },
+      obsType: {
+          A: "bead"
+      },
+      featureType: {
+          A: "gene"
+      },
+      featureValueType: {
+          A: "expression"
+      },
+      featureValueColormapRange: {
+          A: [0, 0.1]
+      },
+      spatialSegmentationLayer: {
+          A: {
+              opacity: 1,
+              radius: 50,
+              visible: true,
+              stroked: false
+          }
+      }
   },
   layout: [
-    {
-      component: "obsSets",
-      coordinationScopes: {
-        datasets: "A"
+      {
+          component: "obsSets",
+          h: 4,
+          w: 4,
+          x: 4,
+          y: 0,
+          coordinationScopes: {
+              obsType: "A"
+          },
+          uid: "A"
       },
-      x: 0,
-      y: 0,
-      w: 6,
-      h: 12
-    },
-    {
-      component: "scatterplot",
-      coordinationScopes: {
-        embeddingType: "ET2"
+      {
+          component: "obsSetSizes",
+          h: 4,
+          w: 4,
+          x: 8,
+          y: 0,
+          coordinationScopes: {
+              obsType: "A"
+          },
+          uid: "B"
       },
-      x: 4,
-      y: 0,
-      w: 6,
-      h: 12
-    },
-    {
-      component: "scatterplot",
-      coordinationScopes: {
-        embeddingType: "ET2"
+      {
+          component: "scatterplot",
+          h: 4,
+          w: 4,
+          x: 0,
+          y: 0,
+          coordinationScopes: {
+              embeddingType: "UMAP",
+              obsType: "A",
+              featureType: "A",
+              featureValueType: "A",
+              featureValueColormapRange: "A"
+          },
+          uid: "C"
       },
-      x: 10,
-      y: 0,
-      w: 6,
-      h: 12
-    }
+      {
+          component: "spatial",
+          h: 4,
+          w: 4,
+          x: 0,
+          y: 4,
+          coordinationScopes: {
+              obsType: "A",
+              featureType: "A",
+              featureValueType: "A",
+              spatialSegmentationLayer: "A",
+              featureValueColormapRange: "A"
+          },
+          uid: "E"
+      },
+      {
+          component: "layerController",
+          h: 4,
+          w: 4,
+          x: 4,
+          y: 4,
+          coordinationScopes: {
+              obsType: "A",
+              featureType: "A",
+              featureValueType: "A",
+              spatialSegmentationLayer: "A"
+          },
+          uid: "F"
+      },
+      {
+          component: "featureList",
+          h: 4,
+          w: 2,
+          x: 8,
+          y: 4,
+          coordinationScopes: {
+              obsType: "A",
+              featureType: "A"
+          },
+          uid: "G"
+      },
+      {
+          component: "description",
+          h: 4,
+          w: 2,
+          x: 10,
+          y: 4,
+          uid: "H"
+      }
   ]
 };
