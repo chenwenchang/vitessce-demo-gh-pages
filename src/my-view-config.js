@@ -1,4 +1,4 @@
-export const myViewConfig = {
+const config = {
     version: "1.0.17",
     name: "Wenchang test",
     description: "Spatial Visualization Demo",
@@ -11,7 +11,7 @@ export const myViewConfig = {
                     fileType: "anndata.zarr",
                     url: "https://chenwenchang.github.io/vitessce-demo-gh-pages/breast_spatial_sample1.zarr",
                     coordinationValues: {
-                        obsType: "bead",
+                        obsType: "spot",
                         featureType: "gene",
                         featureValueType: "expression",
                         embeddingType: "UMAP"
@@ -24,8 +24,11 @@ export const myViewConfig = {
                         obsEmbedding: {
                             path: "obsm/X_umap"
                         },
-                        image: {
-                            path: "uns/spatial/HBCA12_spara1-2_ref382020/images"
+                        obsLocations: {
+                            path: "obsm/spatial"
+                        },
+                        obsSegmentations: {
+                            path: "obsm/segmentations"
                         },
                         obsSets: [
                             { name: "Cell Type", path: "obs/cell_type" },
@@ -39,6 +42,10 @@ export const myViewConfig = {
                             path: "var/feature_name"
                         }
                     }
+                },
+                {
+                    fileType: "image.ome-zarr",
+                    url: "https://chenwenchang.github.io/vitessce-demo-gh-pages/breast_spatial_sample1.ome.zarr"
                 }
             ]
         }
@@ -46,13 +53,53 @@ export const myViewConfig = {
     initStrategy: "auto",
     coordinationSpace: {
         embeddingType: { UMAP: "UMAP" },
-        obsType: { A: "bead" },
+        obsType: { A: "spot" },
         featureType: { A: "gene" },
         featureValueType: { A: "expression" },
         featureValueColormapRange: { A: [0, 0.1] },
         spatialSegmentationLayer: {
-            A: { opacity: 1, radius: 16.74, visible: true, stroked: false }
-        }
+            A: {
+                opacity: 1,
+                radius: 20,
+                visible: true,
+                stroked: false
+            }
+        },
+        spatialImageLayer: {
+            A: [
+                {
+                    type: "raster",
+                    index: 0,
+                    colormap: null,
+                    transparentColor: null,
+                    opacity: 1,
+                    domainType: "Min/Max",
+                    channels: [
+                        {
+                            selection: { c: 0 },
+                            color: [255, 0, 0],
+                            visible: true,
+                            slider: [0, 255]
+                        },
+                        {
+                            selection: { c: 1 },
+                            color: [0, 255, 0],
+                            visible: true,
+                            slider: [0, 255]
+                        },
+                        {
+                            selection: { c: 2 },
+                            color: [0, 0, 255],
+                            visible: true,
+                            slider: [0, 255]
+                        }
+                    ]
+                }
+            ]
+        },
+        spatialZoom: { A: -2.598 },
+        spatialTargetX: { A: 1008.88 },
+        spatialTargetY: { A: 1004.69 }
     },
     layout: [
         {
@@ -90,7 +137,11 @@ export const myViewConfig = {
                 featureType: "A",
                 featureValueType: "A",
                 spatialSegmentationLayer: "A",
-                featureValueColormapRange: "A"
+                featureValueColormapRange: "A",
+                spatialImageLayer: "A",
+                spatialZoom: "A",
+                spatialTargetX: "A",
+                spatialTargetY: "A"
             },
             uid: "E"
         },
@@ -100,10 +151,7 @@ export const myViewConfig = {
             w: 2,
             x: 10,
             y: 0,
-            coordinationScopes: {
-                obsType: "A",
-                featureType: "A"
-            },
+            coordinationScopes: { obsType: "A", featureType: "A" },
             uid: "G"
         }
     ]
