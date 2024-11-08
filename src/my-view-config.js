@@ -1,4 +1,4 @@
-const config = {
+export const myViewConfig = {
     version: "1.0.17",
     name: "Wenchang test",
     description: "Spatial Visualization Demo",
