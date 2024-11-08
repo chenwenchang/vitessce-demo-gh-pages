@@ -146,11 +146,26 @@ export const myViewConfig = {
             uid: "E"
         },
         {
-            component: "featureList",
-            h: 8,
+            component: "layerController",
+            coordinationScopes: {
+              "obsType": "A",
+              "spatialImageLayer": "A",
+              "spatialSegmentationLayer": "A"
+            },
+            props: {
+              "disableChannelsIfRgbDetected": true
+            },
+            h: 4,
             w: 2,
             x: 10,
-            y: 0,
+            y: 0
+          },
+        {
+            component: "featureList",
+            h: 4,
+            w: 2,
+            x: 10,
+            y: 4,
             coordinationScopes: { obsType: "A", featureType: "A" },
             uid: "G"
         }
