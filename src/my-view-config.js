@@ -23,10 +23,7 @@ export const myViewConfig = {
                         },
                         obsEmbedding: {
                             path: "obsm/X_umap"
-                        },
-                        obsLocations: {
-                            path: "obsm/X_spatial"
-                        },
+                        },S
                         image: {
                             path: "uns/spatial/HBCA12_spara1-2_ref382020/images"
                         },
